@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8" />
+    <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" name="viewport">
+    <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="css/app.css">
+</head>
+
+<body>
+    <nav class="navbar navbar-default" role="navigation">
+        <div class="navbar-header">
+            <a class="navbar-brand" href="index.html"><span class="glyphicon glyphicon-home "> App NoName</a>
+        </div>
+    </nav>
+    <form action="" method="get" accept-charset="utf-8">
+        <div class="form-group row">
+            <label for="nom" class="col-sm-3">Nom</label>
+            <div class="input-group col col-sm-9">
+                <input id="nom" type="text" class="form-control" placeholder="Nom">
+            </div>
+        </div>
+        <div class="form-group row">
+            <label for="prenom" class="col-sm-3">Prénom</label>
+            <div class="input-group col-sm-9">
+                <input id="prenom" type="text" class="form-control" placeholder="Prénom">
+            </div>
+        </div>
+        <div class="form-group row">
+            <label for="promotion" class="col-sm-3">Promotion</label>
+            <div class="input-group col col-sm-9">
+                <input id="promotion" type="text" class="form-control" placeholder="Promotion">
+            </div>
+        </div>
+        <div class="form-group">
+            <a href="" class="btn">Modifier</a>
+        </div>
+    </form>
+
+
+
+    <div id="hel">Tests Javascript</div>
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+    <script type="text/javascript">
+    $("#hel").css("color", "red");
+    $("#hel").mouseover(function() {
+        $("#hel").fadeToggle();
+    });
+    </script>
+</body>
+
+</html>

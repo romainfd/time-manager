@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8" />
+    <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" name="viewport">
+    <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="css/w3.css">
+    <link rel="stylesheet" type="text/css" href="css/accueil.css">
+</head>
+
+<body>
+    <form class="regForm" action="">
+        <h1>Register:</h1>
+        <!-- One "tab" for each step in the form: -->
+        <div class="tab tabSignUp tabLogIn">Email:
+            <p>
+                <input placeholder="E-mail..." oninput="this.className = ''">
+            </p>
+        </div>
+
+        <!-- PARTIE LOG IN -->
+        <div class="tab tabLogIn">Mot de passe:
+            <p>
+                <input placeholder="Mot de passe..." oninput="this.className = ''">
+            </p>
+        </div>
+        <!-- Circles which indicates the steps of the form: -->
+        <div id="circlesLogIn" style="display: none; text-align:center;margin-top:40px;">
+            <span class="step"></span>
+            <span class="step"></span>
+        </div>
+
+        <!-- PARTIE SIGN UP -->
+        <div class="tab tabSignUp">Confidentialité:
+            <p>
+                <input placeholder="Code StartUp..." oninput="this.className = ''">
+            </p>
+            <p>
+                <input placeholder="Mot de passe..." oninput="this.className = ''">
+            </p>
+        </div>
+        <div class="tab tabSignUp">Informations:
+            <p>
+                <input placeholder="Prénom..." oninput="this.className = ''">
+            </p>
+            <p>
+                <input placeholder="Nom..." oninput="this.className = ''">
+            </p>
+        </div>
+        <!-- Circles which indicates the steps of the form: -->
+        <div id="circlesSignUp" style="display: none; text-align:center;margin-top:40px;">
+            <span class="step"></span>
+            <span class="step"></span>
+            <span class="step"></span>
+        </div>
+        <div style="overflow:auto;">
+            <div style="float:right;">
+                <button type="button" id="prevBtn" onclick="nextPrev(-1)">Previous</button>
+                <button type="button" id="nextBtn" onclick="nextPrev(1)">Next</button>
+            </div>
+        </div>
+
+    </form>
+    <script type="text/javascript" src="js/jquery-3.2.1.min.js"></script>
+    <script type="text/javascript" src="js/accueil.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,65 @@
+body {
+    text-align: center;
+    font-variant: small-caps;
+}
+
+.monMenu {
+    background-color: black;
+    padding: 10px;
+    border: 3px solid green;
+    margin: 0 50px;
+}
+
+.monBouton {
+    font-size: large;
+}
+
+.monBouton a {
+    color: green;
+    font-weight: bold;
+}
+
+.navbar-default .navbar-brand {
+    color: green;
+}
+
+
+/* Page 1 */
+.square {
+    float: left;
+    position: relative;
+    width: 24.68%;
+    padding-bottom: 24.68%;
+    margin: 0.1%;
+    margin-bottom: 3%;
+    background-color: #f8f8f8;
+    overflow: hidden;
+    border: 3px solid orange;
+}
+
+.content {
+    position: absolute;
+    height: 90%;
+    /* = 100% - 2*5% padding */
+    width: 90%;
+    /* = 100% - 2*5% padding */
+    padding: 5%;
+}
+
+.table {
+    display: table;
+    width: 100%;
+    height: 100%;
+}
+
+.table-cell {
+    display: table-cell;
+    vertical-align: middle;
+    position: relative;
+    top: 2vh;
+    left: 1vw;
+}
+
+.iconeBouton {
+	font-size: 15vh;
+}
