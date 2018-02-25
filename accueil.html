@@ -10,15 +10,18 @@
 </head>
 
 <body>
+    <div style="margin: 75px auto;
+  width: 200px;">
+        <img src="img/logo.png" alt="Logo">
+    </div>
     <form class="regForm" action="">
-        <h1>Register:</h1>
+        <h1>Bonjour !</h1>
         <!-- One "tab" for each step in the form: -->
         <div class="tab tabSignUp tabLogIn">Email:
             <p>
-                <input name="email" id="email" type="text" placeholder="E-mail..." oninput="this.className = ''">
+                <input name="email" id="email" type="text" placeholder="Email..." oninput="this.className = ''">
             </p>
         </div>
-
         <!-- PARTIE LOG IN -->
         <div class="tab tabLogIn">Mot de passe:
             <p>
@@ -26,11 +29,10 @@
             </p>
         </div>
         <!-- Circles which indicates the steps of the form: -->
-        <div id="circlesLogIn" style="display: none; text-align:center;margin-top:40px;">
+        <div id="circlesLogIn" class="circles">
             <span class="step"></span>
             <span class="step"></span>
         </div>
-
         <!-- PARTIE SIGN UP -->
         <div class="tab tabSignUp">Informations:
             <p>
@@ -49,7 +51,7 @@
             </p>
         </div>
         <!-- Circles which indicates the steps of the form: -->
-        <div id="circlesSignUp" style="display: none; text-align:center;margin-top:40px;">
+        <div id="circlesSignUp" class="circles">
             <span class="step"></span>
             <span class="step"></span>
             <span class="step"></span>
@@ -60,7 +62,6 @@
                 <button type="button" id="nextBtn" onclick="nextPrev(1)">Suivant</button>
             </div>
         </div>
-
     </form>
     <script type="text/javascript" src="js/jquery-3.2.1.min.js"></script>
     <script type="text/javascript" src="js/accueil.js"></script>

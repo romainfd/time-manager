@@ -47,20 +47,23 @@ function nextPrev(deltaN) {
                     sessionStorage['session_id'] = messageJson.session_id;
                 }
                 if (messageJson.notexist) {
+                    $("h1").html("Inscription");
                     key = "SignUp";
-                } else if (messageJson.success) { 
+                } else if (messageJson.success) {
+                    $("h1").html("Connexion");
                     key = "LogIn";
                 }
                 // on active les cercles 
                 $("#circles" + key).css('display', 'block');
                 // on affiche la suite
-                displayNextTab(deltaN);
             }
+            // si vide => ça colore en rouge l'email 
+            displayNextTab(deltaN);
         });
     }
     // 2. Connu => bon mdp ? Pas connu => continuer
-    else if (deltaN == 1 && currentTab == 1) {
-        if (key == "SignUp") { 
+    else if (deltaN == 1 && currentTab == 1 && validateForm()) {
+        if (key == "SignUp") {
             // on passe à la suite
             displayNextTab(deltaN);
         } else if (key == "LogIn") { // Requete avec le mot de passe : bons identifiants ?
@@ -75,8 +78,7 @@ function nextPrev(deltaN) {
                     if (messageJson[0][0]) {
                         sessionStorage['user'] = JSON.stringify(messageJson[0][0]);
                         // on redirige vers la page employe
-                        console.log("ok");
-                        // window.location.replace("employe.html");
+                        window.location.replace("employe.html");
                     }
                 }
             });
@@ -86,11 +88,11 @@ function nextPrev(deltaN) {
         }
     }
     // on crée notre compte
-    else if (deltaN == 1 && currentTab == 2) {
+    else if (deltaN == 1 && currentTab == 2 && validateForm()) {
         // on récupère les données
-                   var nom = $("#nom").val();
-            var prenom = $("#prenom").val();
-            var codestartup = $("#codestartup").val();
+        var nom = $("#nom").val();
+        var prenom = $("#prenom").val();
+        var codestartup = $("#codestartup").val();
         var password = $("#password2").val();
         $.post(server + "creerprofil.php" + (sessionStorage['session_id'] === undefined ? "" : "?name=" + sessionStorage['session_id']), { nom: nom, prenom: prenom, codestartup: codestartup, password: password }, function(messageJson) {
             // gestion des erreurs
@@ -109,8 +111,7 @@ function nextPrev(deltaN) {
                     coutsub: 0
                 });
                 // on redirige vers la page employe
-                console.log("ok");
-                // window.location.replace("employe.html");
+                window.location.replace("employe.html");
             }
         });
 
@@ -128,6 +129,8 @@ function displayNextTab(deltaN) {
     x[currentTab].style.display = "none";
     // Si on retourne au début, on cache les cercles
     if (currentTab == 1 && deltaN == -1) {
+        // on réécrit sur h1
+        $("h1").html("Bonjour !");
         // on désactive les cercles 
         $("#circles" + key).css('display', 'none');
     }
@@ -168,3 +171,14 @@ function fixStepIndicator(n) {
     //... and adds the "active" class to the current step:
     x[n].className += " active";
 }
+
+// Appui sur entrée => page suivante
+$('input').keyup(function(e) {
+    if (e.keyCode == 13) {
+        $(this).trigger("action");
+    }
+});
+// Action qd on appuie sur entrée
+$('input').bind("action", function(e) {
+    nextPrev(1);
+});
