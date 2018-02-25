@@ -55,13 +55,17 @@ if (!(empty($_POST['prenom']) || empty($_POST['nom']) || empty($_POST['password'
     // Si on a une réponse, c'est bon
     if ($sth->rowCount() === 1) {
         $idsu = $result[0]['idsu'];
+        // on le stocke pour la session
+        $_SESSION['idsu'] = $idsu;
         $dbh->beginTransaction(); // pour récupérer l'id après insertion
         // CREATION DU NOUVEAU COMPTE
         $query = "INSERT INTO utilisateurs (prenom, nom, email, motdepasse, idsu) VALUES (?,?,?,?,?)";
         $sth = $dbh->prepare($query);
         $sth->execute(array($prenom, $nom, $_SESSION['email'], password_hash($password, PASSWORD_DEFAULT), $idsu));
         if ($sth->rowCount() === 1) { // on a bien ajouté notre compte
-            $msg = array('success' => 'Creation reussie', 'iduser' => $dbh->lastInsertId(), 'idsu' => $idsu);
+            $iduser = $dbh->lastInsertId();
+            $_SESSION['iduser'] = $iduser;
+            $msg = array('success' => 'Creation reussie', 'iduser' => $iduser, 'idsu' => $idsu);
             $dbh->commit();
         } else {
             $msg = array('error' => 'Echec lors de la création du compte');

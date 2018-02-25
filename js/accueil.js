@@ -1,4 +1,14 @@
-var server = 'php/';
+switch (document.location.hostname) {
+    case 'localhost':
+        var rootFolder = 'temporease/';
+        break;
+    default: 
+        // for mapit.000webhostapp.com
+        // or mapit.binets.fr
+        var rootFolder = '';
+}
+var root = window.location.protocol + "//" + window.location.host + "/"+ rootFolder;
+var server = root + "php/";
 
 var currentTab = 0; // Current tab is set to be the first tab (0)
 var key = ""; // par défaut on affiche tout
@@ -14,7 +24,6 @@ function showTab(n) {
     } else {
         $("#prevBtn").css("display", "inline");
     }
-    console.log(n);
     if (n == (x.length - 1)) {
         if (key == "SignUp") {
             $("#nextBtn").html("Créer");

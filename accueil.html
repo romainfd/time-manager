@@ -10,22 +10,21 @@
 </head>
 
 <body>
-    <div style="margin: 75px auto;
-  width: 200px;">
+    <div style="margin: 75px auto;width: 200px;">
         <img src="img/logo.png" alt="Logo">
     </div>
-    <form class="regForm" action="">
+    <div class="regForm">
         <h1>Bonjour !</h1>
         <!-- One "tab" for each step in the form: -->
         <div class="tab tabSignUp tabLogIn">Email:
             <p>
-                <input name="email" id="email" type="text" placeholder="Email..." oninput="this.className = ''">
+                <input name="email" id="email" type="email" maxlength="100" placeholder="Email..." oninput="this.className = ''">
             </p>
         </div>
         <!-- PARTIE LOG IN -->
         <div class="tab tabLogIn">Mot de passe:
             <p>
-                <input name="password" id="password" type="password" placeholder="Mot de passe..." oninput="this.className = ''">
+                <input name="password" id="password" type="password" maxlength="255" placeholder="Mot de passe..." oninput="this.className = ''">
             </p>
         </div>
         <!-- Circles which indicates the steps of the form: -->
@@ -36,18 +35,18 @@
         <!-- PARTIE SIGN UP -->
         <div class="tab tabSignUp">Informations:
             <p>
-                <input name="prenom" id="prenom" type="text" placeholder="Prénom..." oninput="this.className = ''">
+                <input name="prenom" id="prenom" type="text" maxlength="50" placeholder="Prénom..." oninput="this.className = ''">
             </p>
             <p>
-                <input name="nom" id="nom" type="text" placeholder="Nom..." oninput="this.className = ''">
+                <input name="nom" id="nom" type="text" maxlength="50" placeholder="Nom..." oninput="this.className = ''">
             </p>
         </div>
         <div class="tab tabSignUp">Confidentialité:
             <p>
-                <input name="codestartup" id="codestartup" type="text" placeholder="Code StartUp..." oninput="this.className = ''">
+                <input name="codestartup" id="codestartup" type="text" maxlength="255" placeholder="Code StartUp..." oninput="this.className = ''">
             </p>
             <p>
-                <input name="password2" id="password2" type="password" placeholder="Mot de passe..." oninput="this.className = ''">
+                <input name="password2" id="password2" type="password" maxlength="255" placeholder="Mot de passe..." oninput="this.className = ''">
             </p>
         </div>
         <!-- Circles which indicates the steps of the form: -->
@@ -62,7 +61,7 @@
                 <button type="button" id="nextBtn" onclick="nextPrev(1)">Suivant</button>
             </div>
         </div>
-    </form>
+    </div>
     <script type="text/javascript" src="js/jquery-3.2.1.min.js"></script>
     <script type="text/javascript" src="js/accueil.js"></script>
 </body>

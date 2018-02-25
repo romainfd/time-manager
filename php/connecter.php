@@ -56,6 +56,9 @@ if (!(empty($_SESSION['email']) || empty($_POST['password'])) === TRUE) {
 			// en enlevant le mot de passe et le statut actif qui servent à rien
 			unset($result[0]['motdepasse']);
 			unset($result[0]['actif']);
+			// on stocke l'idsu pour afficher facilement les projets, subv, ...
+			$_SESSION['idsu'] = $result[0]['idsu'];
+			$_SESSION['iduser'] = $result[0]['iduser'];
 			array_push($msg, $result);
 		} else {
 			$msg = array('error' => 'Le mot de passe n\'est pas correct');
