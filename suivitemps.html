@@ -7,7 +7,6 @@
     <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
     <link rel="stylesheet" type="text/css" href="css/w3.css">
     <link rel="stylesheet" type="text/css" href="css/main.css">
-    <link rel="stylesheet" type="text/css" href="css/employe.css">
 </head>
 
 <body>
@@ -15,11 +14,15 @@
         <img src="img/logo.png" alt="Logo">
     </div>
     <div class="regForm">
-        <h1>Tableau de bord</h1>
-        <a href="ajouttemps.html">Ajout de temps</a>
-        <a href="ajoutfrais.html">Ajout de frais</a>
-        <a href="suivitemps.html">Suivi temps</a>
+        <h1>Suivi de temps</h1>
+        <!-- Choix du jour à afficher -->
+         <form>
+            <label for="dateSuivi">Date</label>
+            <input type="date" id="dateSuivi" oninput="this.className = ''">
+        </form>
 
+        <!-- Affichage du résultat -->
+        <div id="tableSuiviTemps"></div>
         <!-- Modal -->
         <div id="myModal" class="modal fade" role="dialog">
             <div class="modal-dialog">
@@ -40,9 +43,10 @@
         </div>
     </div>
     <script type="text/javascript" src="js/jquery-3.2.1.min.js"></script>
-    <script type="text/javascript" src="js/bootstrap.min.js"></script>
     <script type="text/javascript" src="js/mustache.min.js"></script>
-    <script type="text/javascript" src="js/employe.js"></script>
+    <script type="text/javascript" src="js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="js/suivitemps.js"></script>
+    <script type="text/javascript" src="js/util.js"></script>
 </body>
 
 </html>

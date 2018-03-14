@@ -1,0 +1,22 @@
+<div>
+    <table class="w3-table-all w3-centered w3-hoverable">
+        <!-- Header -->
+        <tr class="w3-light-green">
+            <th>Projet</th>
+            <!-- {{#dates}} -->
+            <th>
+                {{.}}
+            </th>
+            <!-- {{/dates}} -->
+        </tr>
+        <!-- Lignes -->
+        <!-- {{#projets}} -->
+        <tr id={{idprojet}}>
+        	<th>{{nom}}</th>
+        	<!-- {{#dates}} -->
+            <th class={{.}}>0</th>
+            <!-- {{/dates}} -->
+        </tr>
+		<!-- {{/projets}} -->
+    </table>
+</div>
