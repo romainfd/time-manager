@@ -13,6 +13,7 @@ body {
     padding: 22px;
     width: 70%;
     min-width: 300px;
+    max-width: 550px;
 }
 
 h1 {

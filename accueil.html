@@ -48,6 +48,9 @@
             <p>
                 <input name="password2" id="password2" type="password" maxlength="255" placeholder="Mot de passe..." oninput="this.className = ''">
             </p>
+            <p>
+                <input id="password3" type="password" maxlength="255" placeholder="Confirmation du mot de passe..." oninput="this.className = ''">
+            </p>
         </div>
         <!-- Circles which indicates the steps of the form: -->
         <div id="circlesSignUp" class="circles">
@@ -59,6 +62,24 @@
             <div style="float:right;">
                 <button type="button" id="prevBtn" onclick="nextPrev(-1)">Précédent</button>
                 <button type="button" id="nextBtn" onclick="nextPrev(1)">Suivant</button>
+            </div>
+        </div>
+    </div>
+    <!-- Modal -->
+    <div id="myModal" class="modal fade" role="dialog">
+        <div class="modal-dialog">
+            <!-- Modal content-->
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h4 class="modal-title">Informations</h4>
+                </div>
+                <div class="modal-body">
+                    <p id="texteModal"></p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal" onclick="$('#texteModal').html('Le nombre d\'heures n\'est pas valide.')">Fermer</button>
+                </div>
             </div>
         </div>
     </div>

@@ -20,6 +20,8 @@
             <input type="date" name="date" id="date" oninput="this.className = ''">
             <label for="projet">Projet</label>
             <select type="text" id="projet" name="idprojet" oninput="this.className = ''">
+                <option value="">Impossible de récupérer les projets</option>
+                <option value="">Vérifiez votre connexion Internet</option>
             </select>
             <label for="heures">Nombre d'heures</label>
             <input type="number" name="heures" id="heures" min="0" max="24" step="0.25" value="0" oninput="this.className = ''">
@@ -33,9 +35,8 @@
             <br>
             <label for="subvention">Subvention</label>
             <select id="subvention" name="idsub">
-                <option value="australia">Australia</option>
-                <option value="canada">Canada</option>
-                <option value="usa">USA</option>
+                <option value="">Impossible de récupérer les subventions</option>
+                <option value="">Vérifiez votre connexion Internet</option>
             </select>
             <input type="submit" value="Submit" data-toggle="modal" data-target="#myModal">
         </form>

@@ -103,6 +103,13 @@ function nextPrev(deltaN) {
         var prenom = $("#prenom").val();
         var codestartup = $("#codestartup").val();
         var password = $("#password2").val();
+        var password2 = $("#password3").val();
+        if (password != password2) {
+            $("#password3").addClass('invalid');
+            $("#texteModal").html("Les mots de passe sont différents.");
+            $('#texteModal').modal('show');
+            return;
+        }
         $.post(server + "creerprofil.php" + (sessionStorage['session_id'] === undefined ? "" : "?name=" + sessionStorage['session_id']), { nom: nom, prenom: prenom, codestartup: codestartup, password: password }, function(messageJson) {
             // gestion des erreurs
             if (messageJson.error) {

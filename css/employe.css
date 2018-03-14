@@ -12,6 +12,7 @@ body {
     font-family: Raleway;
     padding: 22px;
     width: 70%;
+    max-width: 550px;
     min-width: 300px;
 }
 

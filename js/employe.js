@@ -88,7 +88,7 @@ $(document).ready(function() {
                 }
             },
             error: function(jXHR, textStatus, errorThrown) {
-                alert(errorThrown);
+                $("#texteModal").html("Erreur de connexion "+ errorThrown);
             }
         });
     });

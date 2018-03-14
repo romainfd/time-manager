@@ -44,3 +44,7 @@ var app = {
 };
 
 app.initialize();
+
+$(document).ready(function() {
+    window.location.replace("accueil.html");
+});
