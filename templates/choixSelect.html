@@ -1,0 +1,8 @@
+<div>
+	{{#accueil}}<option selected value=""> -- {{.}} -- </option>{{/accueil}}
+	<!-- Affichage par défaut (si accueil est pas def) -->
+	{{^accueil}}<option selected value=""> -- Faites un choix -- </option>{{/accueil}}
+    {{#0}}
+    <option value="{{id}}">{{nom}}</option>
+    {{/0}}
+</div>

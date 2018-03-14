@@ -4,7 +4,7 @@ ini_set('session.use_cookies', 0);
 ini_set('session.use_only_cookies', 0);
 ini_set('session.use_trans_sid', 1);
 // Attention au session_name
-session_name('name');
+session_name('gmba');
 session_start();
 
 header('Content-Type: text/html; charset=utf-8');
@@ -25,7 +25,7 @@ if (!isset($_SESSION['email'])) {
 require 'database.class.php';
 $dbh = Database::connect();
 // On récupère directement tous les événements que l'on a créé
-$query = "SELECT * FROM projets
+$query = "SELECT *, idprojet as id FROM projets
             WHERE idsu = ?";
 $sth = $dbh->prepare($query);
 $sth->execute(array($_SESSION['idsu']));

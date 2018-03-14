@@ -77,11 +77,12 @@ function nextPrev(deltaN) {
             displayNextTab(deltaN);
         } else if (key == "LogIn") { // Requete avec le mot de passe : bons identifiants ?
             var password = $("#password").val();
-            $.post(server + "connecter.php" + (sessionStorage['session_id'] === undefined ? "" : "?name=" + sessionStorage['session_id']), { password: password }, function(messageJson) {
+            $.post(server + "connecter.php" + (sessionStorage['session_id'] === undefined ? "" : "?gmba=" + sessionStorage['session_id']), { password: password }, function(messageJson) {
                 // gestion des erreurs
                 if (messageJson.error) {
-                    alert("Error : " + messageJson.error);
-                    // gestion de la réussite
+                    $("#texteModal").html("Erreur : "+messageJson.error);
+                    $('#myModal').modal('show');                   
+                // gestion de la réussite
                 } else if (messageJson.success) {
                     // on récupère les infos de l'utilisateur
                     if (messageJson[0][0]) {
@@ -101,19 +102,21 @@ function nextPrev(deltaN) {
         // on récupère les données
         var nom = $("#nom").val();
         var prenom = $("#prenom").val();
+        var fonction = $("#fonction").val();
         var codestartup = $("#codestartup").val();
         var password = $("#password2").val();
         var password2 = $("#password3").val();
         if (password != password2) {
             $("#password3").addClass('invalid');
             $("#texteModal").html("Les mots de passe sont différents.");
-            $('#texteModal').modal('show');
+            $('#myModal').modal('show');
             return;
         }
-        $.post(server + "creerprofil.php" + (sessionStorage['session_id'] === undefined ? "" : "?name=" + sessionStorage['session_id']), { nom: nom, prenom: prenom, codestartup: codestartup, password: password }, function(messageJson) {
+        $.post(server + "creerprofil.php" + (sessionStorage['session_id'] === undefined ? "" : "?gmba=" + sessionStorage['session_id']), { nom: nom, prenom: prenom, fonction: fonction, codestartup: codestartup, password: password }, function(messageJson) {
             // gestion des erreurs
             if (messageJson.error) {
-                alert("Error : " + messageJson.error);
+                $("#texteModal").html("Erreur : "+messageJson.error);
+                $('#myModal').modal('show');   
                 // gestion de la réussite
             } else if (messageJson.success) {
                 // on stocke les infos de l'utilisateur

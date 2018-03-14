@@ -27,16 +27,12 @@ if (!isset($_SESSION['email'])) {
 */
 
 // Si on a bien reçu par POST les champs input
-if (!(empty($_POST['date']) || empty($_POST['idprojet']) || empty($_POST['heures'])) === TRUE) {
+if (!(empty($_POST['idprojet']) || empty($_POST['date']) || empty($_POST['idcategorie']) || empty($_POST['montant'])) === TRUE) {
     // On assainit les données
-    $date = filter_input(INPUT_POST, 'date', FILTER_SANITIZE_SPECIAL_CHARS);
     $idprojet = filter_input(INPUT_POST, 'idprojet', FILTER_SANITIZE_SPECIAL_CHARS);
-    $heures = filter_input(INPUT_POST, 'heures', FILTER_SANITIZE_SPECIAL_CHARS);
-    if (empty($_POST['cirable'])) {
-        $cirable = 0;
-    } else {
-        $cirable = 1;
-    }    
+    $date = filter_input(INPUT_POST, 'date', FILTER_SANITIZE_SPECIAL_CHARS);
+    $idcategorie = filter_input(INPUT_POST, 'idcategorie', FILTER_SANITIZE_SPECIAL_CHARS);
+    $montant = filter_input(INPUT_POST, 'montant', FILTER_SANITIZE_SPECIAL_CHARS);
     if (empty($_POST['idsub'])) {
         $idsub = NULL;
     } else {
@@ -52,10 +48,10 @@ if (!(empty($_POST['date']) || empty($_POST['idprojet']) || empty($_POST['heures
         exit();
     }
 
-    $query = "INSERT INTO taches (iduser, idprojet, date, heures, cirable, idsub) 
+    $query = "INSERT INTO frais (idprojet, iduser, idcategorie, date, montant, idsub) 
                 VALUES (?,?,?,?,?,?)";
     $sth = $dbh->prepare($query);
-    $sth->execute(array($_SESSION['iduser'], $idprojet, $date, $heures, $cirable, $idsub));
+    $sth->execute(array($idprojet, $_SESSION['iduser'], $idcategorie, $date, $montant, $idsub));
 
     if ($sth->rowCount() === 1) { // on a bien ajouté notre compte
         $msg = array('success' => 'Création reussie !');

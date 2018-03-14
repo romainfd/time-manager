@@ -25,7 +25,7 @@ if (!isset($_SESSION['email'])) {
 require 'database.class.php';
 $dbh = Database::connect();
 // On récupère directement tous les événements que l'on a créé
-$query = "SELECT *, idsub as id FROM subventions
+$query = "SELECT *, idcategorie as id FROM categoriesfrais
             WHERE idsu = ?";
 $sth = $dbh->prepare($query);
 $sth->execute(array($_SESSION['idsu']));
@@ -35,7 +35,7 @@ $sth->execute(array($_SESSION['idsu']));
     $resultSQL = $sth->fetchAll(PDO::FETCH_ASSOC);
     array_push($result, $resultSQL);
 } else {
-    $result = array('error' => 'Pas de subventions trouvées pour votre startup');
+    $result = array('error' => 'Pas de projets trouvés pour votre startup');
 }
 
 echo json_encode($result);

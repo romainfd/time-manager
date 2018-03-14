@@ -4,7 +4,7 @@ ini_set('session.use_cookies', 0);
 ini_set('session.use_only_cookies', 0);
 ini_set('session.use_trans_sid', 1);
 // Attention au session_name
-session_name('name');
+session_name('gmba');
 session_start();
 
 header('Content-Type: text/html; charset=utf-8');
@@ -30,10 +30,11 @@ if (!isset($_SESSION['email'])) {
 
 
 // Si on a bien reçu par POST les champs input login et password
-if (!(empty($_POST['prenom']) || empty($_POST['nom']) || empty($_POST['password']) || empty($_POST['codestartup'])) === TRUE) {
+if (!(empty($_POST['prenom']) || empty($_POST['nom']) || empty($_POST['fonction']) || empty($_POST['password']) || empty($_POST['codestartup'])) === TRUE) {
     // On assainit les données
     $prenom = filter_input(INPUT_POST, 'prenom', FILTER_SANITIZE_SPECIAL_CHARS);
     $nom = filter_input(INPUT_POST, 'nom', FILTER_SANITIZE_SPECIAL_CHARS);
+    $fonction = filter_input(INPUT_POST, 'fonction' , FILTER_SANITIZE_SPECIAL_CHARS);
     $password = filter_input(INPUT_POST, 'password', FILTER_SANITIZE_SPECIAL_CHARS);
     $codestartup = filter_input(INPUT_POST, 'codestartup', FILTER_SANITIZE_SPECIAL_CHARS);
 
@@ -59,9 +60,9 @@ if (!(empty($_POST['prenom']) || empty($_POST['nom']) || empty($_POST['password'
         $_SESSION['idsu'] = $idsu;
         $dbh->beginTransaction(); // pour récupérer l'id après insertion
         // CREATION DU NOUVEAU COMPTE
-        $query = "INSERT INTO utilisateurs (prenom, nom, email, motdepasse, idsu) VALUES (?,?,?,?,?)";
+        $query = "INSERT INTO utilisateurs (prenom, nom, fonction, email, motdepasse, idsu) VALUES (?,?,?,?,?,?)";
         $sth = $dbh->prepare($query);
-        $sth->execute(array($prenom, $nom, $_SESSION['email'], password_hash($password, PASSWORD_DEFAULT), $idsu));
+        $sth->execute(array($prenom, $nom, $fonction, $_SESSION['email'], password_hash($password, PASSWORD_DEFAULT), $idsu));
         if ($sth->rowCount() === 1) { // on a bien ajouté notre compte
             $iduser = $dbh->lastInsertId();
             $_SESSION['iduser'] = $iduser;

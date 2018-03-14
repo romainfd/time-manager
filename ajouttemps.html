@@ -7,7 +7,7 @@
     <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
     <link rel="stylesheet" type="text/css" href="css/w3.css">
     <link rel="stylesheet" type="text/css" href="css/main.css">
-    <link rel="stylesheet" type="text/css" href="css/employe.css">
+    <link rel="stylesheet" type="text/css" href="css/formulaire.css">
 </head>
 
 <body>
@@ -15,9 +15,32 @@
         <img src="img/logo.png" alt="Logo">
     </div>
     <div class="regForm">
-        <h1>Tableau de bord</h1>
-        <a href="ajouttemps.html">Ajout de temps</a>
-        <a href="ajoutfrais.html">Ajout de frais</a>
+        <h1>Ajout de temps</h1>
+        <form id="formAjoutTemps" action="php/ajouttemps.php" method="post">
+            <label for="date">Date</label>
+            <input type="date" name="date" id="date" oninput="this.className = ''">
+            <label for="projet">Projet</label>
+            <select type="text" id="projet" name="idprojet" oninput="this.className = ''">
+                <option value="">Impossible de récupérer les projets</option>
+                <option value="">Vérifiez votre connexion Internet</option>
+            </select>
+            <label for="heures">Nombre d'heures</label>
+            <input type="number" name="heures" id="heures" min="0" max="24" step="0.25" value="0" oninput="this.className = ''">
+            <label id="labelCheckbox" for="cirable">
+                CIRable
+            </label>
+            <label class="switch">
+                <input type="checkbox" name="cirable" id="cirable" value="1">
+                <span class="slider round"></span>
+            </label>
+            <br>
+            <label for="subvention">Subvention</label>
+            <select id="subvention" name="idsub">
+                <option value="">Impossible de récupérer les subventions</option>
+                <option value="">Vérifiez votre connexion Internet</option>
+            </select>
+            <input type="submit" value="Submit" data-toggle="modal" data-target="#myModal">
+        </form>
 
         <!-- Modal -->
         <div id="myModal" class="modal fade" role="dialog">
@@ -41,7 +64,7 @@
     <script type="text/javascript" src="js/jquery-3.2.1.min.js"></script>
     <script type="text/javascript" src="js/bootstrap.min.js"></script>
     <script type="text/javascript" src="js/mustache.min.js"></script>
-    <script type="text/javascript" src="js/employe.js"></script>
+    <script type="text/javascript" src="js/ajouttemps.js"></script>
 </body>
 
 </html>
