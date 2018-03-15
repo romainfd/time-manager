@@ -8,7 +8,7 @@ body {
 
 .regForm {
     background-color: white;
-    margin: 75px auto;
+    margin: 35px auto;
     font-family: Raleway;
     padding: 22px;
     width: 70%;
@@ -42,4 +42,9 @@ button:hover, input[type=submit]:hover, a:hover {
 a:hover {
     text-decoration: none;
     color: white;
+}
+
+/* Spécifique aux liens avec images */
+.lienImage {
+    background-color: #F1F1F1;
 }

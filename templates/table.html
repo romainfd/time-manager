@@ -2,19 +2,19 @@
     <table class="w3-table-all w3-centered w3-hoverable">
         <!-- Header -->
         <tr class="w3-light-green">
-            <th>Projet</th>
+            <th>Projet\Jour</th>
             <!-- {{#dates}} -->
             <th>
-                {{.}}
+                {{dateClean}}
             </th>
             <!-- {{/dates}} -->
         </tr>
         <!-- Lignes -->
         <!-- {{#projets}} -->
         <tr id={{idprojet}}>
-        	<th>{{nom}}</th>
+        	<td class="w3-light-green">{{nom}}</td>
         	<!-- {{#dates}} -->
-            <th class={{.}}>0</th>
+            <td class={{iddate}}>0</td>
             <!-- {{/dates}} -->
         </tr>
 		<!-- {{/projets}} -->

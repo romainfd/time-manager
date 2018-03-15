@@ -40,4 +40,16 @@ var dateObj = class dateObj {
 
         return [year, month, day].join('-');
     }
+
+    /*
+    Toutes les dates autour iddate avec -deltaDebut dates avant et deltaFin date après
+    ATTENTION : deltaDebut est négatif
+     */
+    datesSpan(deltaDebut, deltaFin) {
+        var dates = [];
+        for (var i = deltaDebut; i <= deltaFin; i++) {
+            dates.push(this.createByAddDays(i));
+        }
+        return dates;
+    }
 }
