@@ -5,7 +5,7 @@ showTab(currentTab); // Display the current tab
 function showTab(n) {
     // This function will display the specified tab of the form ...
     var x = document.getElementsByClassName("tab" + key);
-    x[n].style.display = "block";
+    x[n].style.display = "block"; 
     // ... and fix the Previous/Next buttons:
     if (n == 0) {
         $("#prevBtn").css('display', "none");
