@@ -18,7 +18,7 @@ function validateForm() {
 
 $(document).ready(function() {
     // on connecte l'utilisateur pour l'envoi de ses temps
-    $("#formAjoutTemps").attr('action', 'php/ajouttemps.php' + (sessionStorage['session_id'] === undefined ? "" : "?gmba=" + sessionStorage['session_id']));
+    $("#formAjoutTemps").attr('action', server + 'ajouttemps.php' + (sessionStorage['session_id'] === undefined ? "" : "?gmba=" + sessionStorage['session_id']));
 
     // on affiche la liste des PROJETS de la startup
     $.getJSON(server + "projets.php?gmba=" + sessionStorage['session_id'], function(messageJson) {
@@ -60,12 +60,13 @@ $(document).ready(function() {
     // Envoi du formulaire
     $('#formAjoutTemps').on('submit', function(e) {
         e.preventDefault();
+        alert($(this).attr('action'));
         if (!validateForm()) {
             $("#texteModal").html("Un des champs obligatoire n'est pas rempli.");
             return;
         }
         $.ajax({
-            url: $(this).attr('action') || window.location.pathname,
+            url: $(this).attr('action'),
             type: "POST",
             data: $(this).serialize(),
             success: function(data) {

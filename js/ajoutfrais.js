@@ -22,7 +22,7 @@ function validateForm() {
 
 $(document).ready(function() {
     // on connecte l'utilisateur pour l'envoi de ses temps
-    $("#formAjoutFrais").attr('action', 'php/ajoutfrais.php' + (sessionStorage['session_id'] === undefined ? "" : "?gmba=" + sessionStorage['session_id']));
+    $("#formAjoutFrais").attr('action', server+'/ajoutfrais.php' + (sessionStorage['session_id'] === undefined ? "" : "?gmba=" + sessionStorage['session_id']));
 
     // on affiche la liste des PROJETS de la startup
     $.getJSON(server + "projets.php?gmba=" + sessionStorage['session_id'], function(messageJson) {
