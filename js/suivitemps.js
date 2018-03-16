@@ -1,14 +1,3 @@
-switch (document.location.hostname) {
-    case 'localhost':
-        var rootFolder = 'temporease/';
-        break;
-    default:
-        // for other servers
-        var rootFolder = '';
-}
-var root = window.location.protocol + "//" + window.location.host + "/" + rootFolder;
-var server = root + "php/";
-
 var minCaseWidth = 130; // la taille minimale en pixels des cases du tableau => pour déterminer le nombre de cases en fonction de l'affichage
 var n; // le nombre de cases
 var tableTitres = {
@@ -76,8 +65,6 @@ $("#dateSuivi").change(function() {
                         elem = messageJson[0][i]; 
                         $("tr#"+elem.idprojet+" td."+elem.date).html(elem.temps);
                     }
-                    console.log(messageJson[0][0]);
-                    console.log(messageJson[0][1]);
                 }
             });
         }
