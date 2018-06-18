@@ -8,52 +8,72 @@
     <link rel="stylesheet" type="text/css" href="css/w3.css">
     <link rel="stylesheet" type="text/css" href="css/formulaire.css">
     <link rel="stylesheet" type="text/css" href="css/main.css">
+    <link rel="icon" type="image/x-icon" href="favicon.ico" />
+    <!--[if IE]><link rel="shortcut icon" type="image/x-icon" href="favicon.ico" /><![endif]-->
+    <title>Ajout de frais</title>
 </head>
 
 <body>
-    <div style="margin: 25px auto; padding: 0; width: 200px;">
-        <a class="lienImage" href="employe.html" style="padding:0;">   
+    <div id="mySidenav" class="sidenav">
+        <a href="javascript:void(0)" class="closebtn" onclick="closeNav();">&times;</a>
+        <a href="ajouttemps.html">Ajout d'heures</a>
+        <a href="ajoutfrais.html">Ajout de frais</a>
+        <a href="suivitemps.html">Suivi des heures</a>
+        <a href="accueil.html">Déconnexion</a>
+    </div>
+    <div id="main">
+        <!-- Cross to open the sidenav -->
+        <div class="centeredBloc">
+            <div id="menuCross" onclick="openNav();">
+                <div class="bar1"></div>
+                <div class="bar2"></div>
+                <div class="bar3"></div>
+            </div>
+        </div>
+        <div style="margin: 25px auto; padding: 0; width: 200px;">
+            <a class="lienImage" href="employe.html" style="padding:0;">   
             <img src="img/logo.png" alt="Logo">
         </a>
-    </div>
-    <div class="regForm">
-        <h1>Ajout de frais</h1>
-        <form id="formAjoutFrais" action="php/ajoutfrais.php" method="post">
-            <label for="date">Date</label>
-            <input type="date" name="date" id="date" oninput="this.className = ''">
-            <label for="projet">Projet</label>
-            <select type="text" id="projet" name="idprojet" oninput="this.className = ''">
-                <option value="">Impossible de récupérer les projets</option>
-                <option value="">Vérifiez votre connexion Internet</option>
-            </select>
-            <label for="categorie">Catégorie de frais</label>
-            <select type="text" id="categorie" name="idcategorie" oninput="this.className = ''">
-                <option value="">Impossible de récupérer les catégories</option>
-                <option value="">Vérifiez votre connexion Internet</option>
-            </select>
-            <label for="heures">Montant</label>
-            <input type="number" name="montant" id="montant" min="0" max="9999999.99" step="0.01" value="0" oninput="this.className = ''">
-            <label for="subvention">Subvention</label>
-            <select id="subvention" name="idsub">
-                <option value="">Impossible de récupérer les subventions</option>
-                <option value="">Vérifiez votre connexion Internet</option>
-            </select>
-            <input type="submit" value="Submit" data-toggle="modal" data-target="#myModal">
-        </form>
-        <!-- Modal -->
-        <div id="myModal" class="modal fade" role="dialog">
-            <div class="modal-dialog">
-                <!-- Modal content-->
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <button type="button" class="close" data-dismiss="modal">&times;</button>
-                        <h4 class="modal-title">Informations</h4>
-                    </div>
-                    <div class="modal-body">
-                        <p id="texteModal">Le montant n'est pas valide.</p>
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-default" data-dismiss="modal" onclick="$('#texteModal').html('Le montant n\'est pas valide.')">Fermer</button>
+        </div>
+        <div class="regForm">
+            <h1>Ajout de frais</h1>
+            <form id="formAjoutFrais" action="php/ajoutfrais.php" method="post">
+                <label for="date">Date</label>
+                <input type="date" name="date" id="date" oninput="this.className = ''">
+                <label for="projet">Projet</label>
+                <select type="text" id="projet" name="idprojet" oninput="this.className = ''">
+                    <option value="">Impossible de récupérer les projets</option>
+                    <option value="">Vérifiez votre connexion Internet</option>
+                </select>
+                <label for="categorie">Catégorie de frais</label>
+                <select type="text" id="categorie" name="idcategorie" oninput="this.className = ''">
+                    <option value="">Impossible de récupérer les catégories</option>
+                    <option value="">Vérifiez votre connexion Internet</option>
+                </select>
+                <label for="heures">Montant</label>
+                <input type="number" name="montant" id="montant" min="0" max="9999999.99" step="0.01" value="0" oninput="this.className = ''">
+                <label for="subvention">Subvention</label>
+                <select id="subvention" name="idsub">
+                    <option value="">Impossible de récupérer les subventions</option>
+                    <option value="">Vérifiez votre connexion Internet</option>
+                </select>
+                <input type="submit" value="Ajouter" data-toggle="modal" data-target="#myModal">
+            </form>
+            <!-- Modal -->
+            <div id="myModal" class="modal fade" role="dialog">
+                <div class="modal-dialog">
+                    <!-- Modal content-->
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal">&times;</button>
+                            <h4 class="modal-title">Informations</h4>
+                        </div>
+                        <div class="modal-body">
+                            <p id="texteModal">Le montant n'est pas valide.</p>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-default" data-dismiss="modal" onclick="$('#texteModal').html('Le montant n\'est pas valide.')">Fermer</button>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -63,6 +83,7 @@
     <script type="text/javascript" src="js/bootstrap.min.js"></script>
     <script type="text/javascript" src="js/mustache.min.js"></script>
     <script type="text/javascript" src="js/serveur.js"></script>
+    <script type="text/javascript" src="js/util.js"></script>
     <script type="text/javascript" src="js/ajoutfrais.js"></script>
 </body>
 

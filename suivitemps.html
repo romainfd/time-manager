@@ -6,38 +6,66 @@
     <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" name="viewport">
     <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
     <link rel="stylesheet" type="text/css" href="css/w3.css">
+    <link rel="stylesheet" href="css/font-awesome.min.css">
     <link rel="stylesheet" type="text/css" href="css/main.css">
+    <link rel="icon" type="image/x-icon" href="favicon.ico" />
+    <!--[if IE]><link rel="shortcut icon" type="image/x-icon" href="favicon.ico" /><![endif]-->
+    <title>Suivi des heures</title>
 </head>
 
 <body>
-    <div style="margin: 25px auto; padding: 0; width: 200px;">
-        <a class="lienImage" href="employe.html" style="padding:0;">   
+    <div id="mySidenav" class="sidenav">
+        <a href="javascript:void(0)" class="closebtn" onclick="closeNav();">&times;</a>
+        <a href="ajouttemps.html">Ajout d'heures</a>
+        <a href="suivitemps.html">Suivi des heures</a>
+        <a href="accueil.html">Déconnexion</a>
+    </div>
+    <div id="main">
+        <!-- Cross to open the sidenav -->
+        <div class="centeredBloc">
+            <div id="menuCross" onclick="openNav();">
+                <div class="bar1"></div>
+                <div class="bar2"></div>
+                <div class="bar3"></div>
+            </div>
+        </div>
+        <div style="margin: 25px auto; padding: 0; width: 200px;">
+            <a class="lienImage" href="employe.html" style="padding:0;">   
             <img src="img/logo.png" alt="Logo">
         </a>
-    </div>
-    <div class="regForm">
-        <h1>Suivi de temps</h1>
-        <!-- Choix du jour à afficher -->
-        <form>
-            <label for="dateSuivi">Date</label>
-            <input type="date" id="dateSuivi" oninput="this.className = ''">
-        </form>
-        <!-- Affichage du résultat -->
-        <div id="tableSuiviTemps"></div>
-        <!-- Modal -->
-        <div id="myModal" class="modal fade" role="dialog">
-            <div class="modal-dialog">
-                <!-- Modal content-->
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <button type="button" class="close" data-dismiss="modal">&times;</button>
-                        <h4 class="modal-title">Informations</h4>
-                    </div>
-                    <div class="modal-body">
-                        <p id="texteModal">Le nombre d'heures n'est pas valide.</p>
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-default" data-dismiss="modal" onclick="$('#texteModal').html('Le nombre d\'heures n\'est pas valide.')">Fermer</button>
+        </div>
+        <div class="regForm">
+            <h1>Suivi des heures</h1>
+            <!-- Choix du jour à afficher -->
+            <form>
+                <a href="#" class="w3-button arrow" onclick="moveDisplay(-1);">&laquo;</a>
+                <label for="dateSuivi">Date</label>
+                <input type="date" id="dateSuivi" class="inputDate" oninput="this.className = ''">
+                <a href="#" class="w3-button arrow" onclick="moveDisplay(+1);">&raquo;</a>
+            </form>
+            <!-- Affichage du résultat -->
+            <div id="tableSuiviTemps"></div>
+            <!-- Affichage plus précis -->
+            <div id="precis">
+                <p style="margin: 15px 0 0 0;">Précisions :</p>
+                <p style="font-style: italic; color: grey; font-size:12px; ">Pour afficher les détails d'un jour, cliquez sur une case de cette journée.</p>
+                <div id="tableSuiviTempsPrecis"></div>
+            </div>
+            <!-- Modal -->
+            <div id="myModal" class="modal fade" role="dialog">
+                <div class="modal-dialog">
+                    <!-- Modal content-->
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal">&times;</button>
+                            <h4 class="modal-title">Informations</h4>
+                        </div>
+                        <div class="modal-body">
+                            <p id="texteModal">Le nombre d'heures n'est pas valide.</p>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-default" data-dismiss="modal" onclick="$('#texteModal').html('Le nombre d\'heures n\'est pas valide.')">Fermer</button>
+                        </div>
                     </div>
                 </div>
             </div>

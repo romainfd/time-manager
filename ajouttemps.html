@@ -7,56 +7,87 @@
     <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
     <link rel="stylesheet" type="text/css" href="css/w3.css">
     <link rel="stylesheet" type="text/css" href="css/main.css">
+    <link rel="stylesheet" href="css/font-awesome.min.css">
     <link rel="stylesheet" type="text/css" href="css/formulaire.css">
+    <link rel="icon" type="image/x-icon" href="favicon.ico" />
+    <!--[if IE]><link rel="shortcut icon" type="image/x-icon" href="favicon.ico" /><![endif]-->
+    <title>Ajout d'heures</title>
 </head>
 
 <body>
-    <div style="margin: 25px auto; padding: 0; width: 200px;">
-        <a class="lienImage" href="employe.html" style="padding:0;">   
-            <img src="img/logo.png" alt="Logo">
-        </a>
+    <div id="mySidenav" class="sidenav">
+        <a href="javascript:void(0)" class="closebtn" onclick="closeNav();">&times;</a>
+        <a href="ajouttemps.html">Ajout d'heures</a>
+        <a href="suivitemps.html">Suivi des heures</a>
+        <a href="accueil.html">Déconnexion</a>
     </div>
-    <div class="regForm">
-        <h1>Ajout de temps</h1>
-        <form id="formAjoutTemps" action="php/ajouttemps.php" method="post">
-            <label for="date">Date</label>
-            <input type="date" name="date" id="date" oninput="this.className = ''">
-            <label for="projet">Projet</label>
-            <select type="text" id="projet" name="idprojet" oninput="this.className = ''">
-                <option value="">Impossible de récupérer les projets</option>
-                <option value="">Vérifiez votre connexion Internet</option>
-            </select>
-            <label for="heures">Nombre d'heures</label>
-            <input type="number" name="heures" id="heures" min="0" max="24" step="0.25" value="0" oninput="this.className = ''">
-            <label id="labelCheckbox" for="cirable">
-                CIRable
-            </label>
-            <label class="switch">
-                <input type="checkbox" name="cirable" id="cirable" value="1">
-                <span class="slider round"></span>
-            </label>
-            <br>
-            <label for="subvention">Subvention</label>
-            <select id="subvention" name="idsub">
-                <option value="">Impossible de récupérer les subventions</option>
-                <option value="">Vérifiez votre connexion Internet</option>
-            </select>
-            <input type="submit" value="Submit" data-toggle="modal" data-target="#myModal">
-        </form>
-        <!-- Modal -->
-        <div id="myModal" class="modal fade" role="dialog">
-            <div class="modal-dialog">
-                <!-- Modal content-->
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <button type="button" class="close" data-dismiss="modal">&times;</button>
-                        <h4 class="modal-title">Informations</h4>
+    <div id="main">
+        <!-- Cross to open the sidenav -->
+        <div class="centeredBloc">
+            <div id="menuCross" onclick="openNav();">
+                <div class="bar1"></div>
+                <div class="bar2"></div>
+                <div class="bar3"></div>
+            </div>
+        </div>
+        <div style="margin: 25px auto; padding: 0; width: 200px;">
+            <a class="lienImage" href="employe.html" style="padding:0;">   
+                <img src="img/logo.png" alt="Logo">
+            </a>
+        </div>
+        <div class="regForm">
+            <h1>Ajout d'heures</h1>
+            <form id="formAjoutTemps" action="php/ajouttemps.php" method="post">
+                <input type="hidden" name="idtache" id="idtache" value="">
+                <label for="date">Date</label>
+                <input type="date" name="date" id="date" oninput="this.className = ''">
+                <!-- Affichage des heures déjà rentrées de la journée -->
+                <div id="precis">
+                    <p style="font-style: italic; color: grey; font-size:12px; margin: 0 0 0 0">Heures déjà rentrées pour cette date :</p>
+                    <div id="tableSuiviTempsPrecis">
+                        <p style="font-style: italic; color: grey; font-size:12px; margin: 0 0 0 0">Vous devez d'abord  choisir une date.</p>
                     </div>
-                    <div class="modal-body">
-                        <p id="texteModal">Le nombre d'heures n'est pas valide.</p>
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-default" data-dismiss="modal" onclick="$('#texteModal').html('Le nombre d\'heures n\'est pas valide.')">Fermer</button>
+                    <p></p>
+                </div>
+                <label for="projet">Projet</label>
+                <select type="text" id="projet" name="idprojet" oninput="this.className = ''">
+                    <option value="">Impossible de récupérer les projets</option>
+                    <option value="">Vérifiez votre connexion Internet</option>
+                </select>
+                <label for="heures">Nombre d'heures</label>
+                <input type="number" name="heures" id="heures" step="0.25" value="0" oninput="this.className = ''">
+                <label for="date">Description</label>
+                <textarea id="description" name="description" placeholder="Description éventuelle..."></textarea>
+                <label id="labelCheckbox" for="cirable">
+                    CIRable
+                </label>
+                <label class="switch">
+                    <input type="checkbox" name="cirable" id="cirable" value="1">
+                    <span class="slider round"></span>
+                </label>
+                <br>
+                <label for="subvention">Subvention</label>
+                <select id="subvention" name="idsub">
+                    <option value="">Impossible de récupérer les subventions</option>
+                    <option value="">Vérifiez votre connexion Internet</option>
+                </select>
+                <input type="submit" value="Ajouter" data-toggle="modal" data-target="#myModal">
+            </form>
+            <!-- Modal -->
+            <div id="myModal" class="modal fade" role="dialog">
+                <div class="modal-dialog">
+                    <!-- Modal content-->
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal">&times;</button>
+                            <h4 class="modal-title">Informations</h4>
+                        </div>
+                        <div class="modal-body">
+                            <p id="texteModal"></p>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-default" data-dismiss="modal" onclick="$('#texteModal').html('')">Fermer</button>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -66,6 +97,7 @@
     <script type="text/javascript" src="js/bootstrap.min.js"></script>
     <script type="text/javascript" src="js/mustache.min.js"></script>
     <script type="text/javascript" src="js/serveur.js"></script>
+    <script type="text/javascript" src="js/util.js"></script>
     <script type="text/javascript" src="js/ajouttemps.js"></script>
 </body>
 

@@ -5,6 +5,6 @@ switch (document.location.hostname) {
         break;
     default:
         // for other servers : go to online server
-		var root = "https://temporease.000webhostapp.com/";
+		var root = "http://temporease.000webhostapp.com/";
 		var server = root + "php/";
 }

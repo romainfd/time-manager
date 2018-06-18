@@ -16,6 +16,10 @@ function validateForm() {
     return valid; // return the valid status
 }
 
+$("#date").change(function() {
+    displayDayPrecise($("#date").val());
+});
+
 $(document).ready(function() {
     // on connecte l'utilisateur pour l'envoi de ses temps
     $("#formAjoutTemps").attr('action', server + 'ajouttemps.php' + (sessionStorage['session_id'] === undefined ? "" : "?gmba=" + sessionStorage['session_id']));
@@ -34,6 +38,11 @@ $(document).ready(function() {
                 var page = $(templates).html();
                 page = Mustache.render(page, messageJson);
                 $("#projet").html(page);
+
+                // en callback, on récupère l'eventuel idprojet pour préremplir
+                if (params.idprojet) {
+                    $("#projet").val(params.idprojet);
+                }
             });
         }
     }, "html");
@@ -53,14 +62,39 @@ $(document).ready(function() {
                 var page = $(templates).html();
                 page = Mustache.render(page, messageJson);
                 $("#subvention").html(page);
+                // en callback, on récupère l'eventuel subv pour préremplir
+                if (params.subvention) {
+                    $("#subvention").val(params.subvention);
+                }
             });
         }
     }, "html");
 
+    var params = getAllUrlParams();
+    if (params != {}) {
+        if (params.idtache) {
+            $("#idtache").val(params.idtache);
+            $(".regForm h1:first").html("Modification");
+        }
+        if (params.date) {
+            $("#date").val(params.date);
+            displayDayPrecise(params.date);
+        }
+        if (params.heures) {
+            $("#heures").val(params.heures);
+        }
+        if (params.description) {
+            $("#description").text(params.description);
+        }
+        if (params.cirable == 1) {
+            $("#cirable").prop('checked', true);
+        }
+    }
+
+
     // Envoi du formulaire
     $('#formAjoutTemps').on('submit', function(e) {
         e.preventDefault();
-        alert($(this).attr('action'));
         if (!validateForm()) {
             $("#texteModal").html("Un des champs obligatoire n'est pas rempli.");
             return;
@@ -78,7 +112,7 @@ $(document).ready(function() {
                 }
             },
             error: function(jXHR, textStatus, errorThrown) {
-                $("#texteModal").html("Erreur de connexion "+ errorThrown);
+                $("#texteModal").html("Erreur de connexion " + errorThrown);
             }
         });
     });

@@ -26,7 +26,8 @@ require 'database.class.php';
 $dbh = Database::connect();
 // On récupère directement tous les événements que l'on a créé
 $query = "SELECT *, idprojet as id FROM projets
-            WHERE idsu = ?";
+            WHERE idsu = ?
+            ORDER BY id ASC"; // pour avoir un ordre pour les requetes indep ensuite
 $sth = $dbh->prepare($query);
 $sth->execute(array($_SESSION['idsu']));
 

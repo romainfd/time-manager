@@ -53,3 +53,135 @@ var dateObj = class dateObj {
         return dates;
     }
 }
+
+// MENU
+/* Set the width of the side navigation to 250px and the left margin of the page content to 250px and add a black background color to body */
+function openNav() {
+    $("#menuCross").toggleClass("change");
+    $("#menuCross").css("display", "none");
+    document.getElementById("mySidenav").style.width = "250px";
+    document.getElementById("main").style.marginLeft = "250px";
+    //document.body.style.backgroundColor = "rgba(0,0,0,0.4)";
+    //document.getElementsByClassName("regForm")[0].style.backgroundColor = "rgba(255,255,255,0.2)";
+}
+
+/* Set the width of the side navigation to 0 and the left margin of the page content to 0, and the background color of body to white */
+function closeNav() {
+    $("#menuCross").toggleClass("change");
+    $("#menuCross").css("display", "inline-block");
+    document.getElementById("mySidenav").style.width = "0";
+    document.getElementById("main").style.marginLeft = "0";
+    //document.body.style.backgroundColor = "rgba(241,241,241,1)";
+}
+
+// Tableau des heures précises sur une journée
+function displayDayPrecise(date, idprojet){
+/*  Les 2 font pareil pour le moment (on s'en fout du projet, on affiche toute la journée)
+    if (idprojet == null) {
+        console.log("Affichage des détails pour la journée "+date);
+    } else {
+        console.log("Affichage des détails du projet "+idprojet+" pour la journée "+date);
+    }*/
+
+    // On récupère les heures à afficher
+    $.post(server + "suivitemps.php" + (sessionStorage['session_id'] === undefined ? "" : "?gmba=" + sessionStorage['session_id']), { date: date }, function(messageJson) {
+        // gestion des erreurs
+        if (messageJson.error) {
+            $("#texteModal").html("Erreur : " + messageJson.error);
+            $('#myModal').modal('show');
+            // gestion de la réussite
+        } else if (messageJson.success) {
+            // On remplit le template
+            $.get(root + "templates/tablePrecis.html", function(templates) {
+                var page = $(templates).html();
+                page = Mustache.render(page, messageJson);
+                $("#tableSuiviTempsPrecis").html(page);
+            });
+        } else if (messageJson.nothing) {
+            $("#tableSuiviTempsPrecis").html("<p style='font-style: italic; color: grey; font-size:12px; margin: 0 0 0 0'>"+
+                                                "Vous n'avez pas encore rentré d'heures à cette date."+"</p>");
+        }
+    }); 
+}
+
+// supprime la tache idtache de la DB
+function supprimerTache(idtache) {
+    $.post(server + "ajouttemps.php?gmba=" + sessionStorage['session_id'],  { delete: 1, idtache: idtache }, function(messageJson) {
+        if (messageJson.error) {
+            $("#texteModal").html("Erreur : " + messageJson.error);
+            $('#myModal').modal('show');
+        } else if (messageJson.success) {
+            $("#texteModal").html(messageJson.success);
+            $('#myModal').modal('show');
+        }
+    });
+}
+ 
+// Fonction pour récupérer les parametres passés dans l'URL
+// La description doit toujours etre en derniere
+function getAllUrlParams(url) {
+  // get query string from url (optional) or window
+  var queryString = url ? url.split('?')[1] : window.location.search.slice(1);
+
+  // we'll store the parameters here
+  var obj = {};
+
+  // if query string exists
+  if (queryString) {
+
+    // stuff after # is not part of query string, so get rid of it
+    queryString = queryString.split('#')[0];
+
+    // split our query string into its component parts
+    var arr = queryString.split('&');
+
+    for (var i=0; i<arr.length; i++) {
+      // separate the keys and the values
+      var a = arr[i].split('=');
+
+      // in case params look like: list[]=thing1&list[]=thing2
+      var paramNum = undefined;
+      var paramName = a[0].replace(/\[\d*\]/, function(v) {
+        paramNum = v.slice(1,-1);
+        return '';
+      });
+
+      // set parameter value (use 'true' if empty)
+      var paramValue = typeof(a[1])==='undefined' ? true : a[1];
+
+      // (optional) keep case consistent
+      paramName = paramName.toLowerCase();
+      paramValue = paramValue.toLowerCase();
+
+      // cas terminal de la description eventuelle
+      if (paramName == "description") {
+        var index = queryString.indexOf("&description=");
+        obj['description']=decodeURIComponent(queryString.substr(index + "?description=".length));
+        return obj;
+      }
+
+      // if parameter name already exists
+      if (obj[paramName]) {
+        // convert value to array (if still string)
+        if (typeof obj[paramName] === 'string') {
+          obj[paramName] = [obj[paramName]];
+        }
+        // if no array index number specified...
+        if (typeof paramNum === 'undefined') {
+          // put the value on the end of the array
+          obj[paramName].push(paramValue);
+        }
+        // if array index number specified...
+        else {
+          // put the value at that index number
+          obj[paramName][paramNum] = paramValue;
+        }
+      }
+      // if param name doesn't exist yet, set it
+      else {
+        obj[paramName] = paramValue;
+      }
+    }
+  }
+  return obj;
+}

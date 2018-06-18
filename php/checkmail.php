@@ -42,7 +42,7 @@ if (!(empty($_POST['email'])) === TRUE) {
 	if ($sth->rowCount() === 1) {
 			$msg = array('success' => 'Connexion réussie', 'session_id' => session_id());
 	} else {
-		$msg = array('notexist' => 'Cet email n\'existe pas dans notre base de données. Veuillez créer un compte.', 'session_id' => session_id());
+		$msg = array('notexist' => 'Cet email n\'existe pas dans notre base de données. Veuillez demander à votre manager de créer un compte pour cet email.', 'session_id' => session_id());
 	}
 	// dans les 2 cas : on enregistre le login sur la session du serveur
 	$_SESSION['email'] = $email;

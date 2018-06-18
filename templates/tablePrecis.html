@@ -1,0 +1,21 @@
+<div>
+    <table class="w3-table-all w3-centered w3-hoverable">
+        <!-- Header -->
+        <tr class="w3-light-green">
+            <th>Projet</th>
+            <th>Heures</th>
+            <th>Description</th>
+            <th>Édition</th>
+        </tr>
+        <!-- Lignes -->
+        <!-- {{#tachesPrecis}} -->
+        <tr>
+            <td class="w3-light-green">{{nom}}</td>
+            <td>{{heures}}</td>
+            <td>{{{description}}}</td>
+            <td><a href="ajouttemps.html?heures={{heures}}&date={{date}}&cirable={{cirable}}&idprojet={{idprojet}}&subvention={{idsub}}&idtache={{idtache}}&description={{description}}"><i class="fa fa-edit fa-x" style="position: relative; top:1px;"></i></a>
+            <a href="#" onclick="supprimerTache({{idtache}}); location.reload();"><i class="fa fa-trash fa-x"></i></a></td>
+        </tr>
+        <!-- {{/tachesPrecis}} -->
+    </table>
+</div>

@@ -2,12 +2,6 @@ var currentTab = 0; // Current tab is set to be the first tab (0)
 var key = ""; // par défaut on affiche tout
 showTab(currentTab); // Display the current tab
 
-$(document).ready(function() {
-    // on déconnecte (car la déconnexion se fait juste avec une redirection sur cette page)
-    sessionStorage.removeItem('session_id');
-    sessionStorage.removeItem('email');
-    sessionStorage.removeItem('user');
-})
 function showTab(n) {
     // This function will display the specified tab of the form ...
     var x = document.getElementsByClassName("tab" + key);
@@ -50,23 +44,26 @@ function nextPrev(deltaN) {
                     sessionStorage['session_id'] = messageJson.session_id;
                 }
                 if (messageJson.notexist) {
-                    $("#texteModal").html("Erreur : "+messageJson.notexist);
-                    $('#myModal').modal('show');    
+                    $("h1").html("Inscription");
+                    key = "SignUp";
                 } else if (messageJson.success) {
                     $("h1").html("Connexion");
                     key = "LogIn";
-                    // on active les cercles 
-                    $("#circles" + key).css('display', 'block');
-                    // on affiche la suite
-                    // si vide => ça colore en rouge l'email 
-                    displayNextTab(deltaN);
                 }
+                // on active les cercles 
+                $("#circles" + key).css('display', 'block');
+                // on affiche la suite
             }
+            // si vide => ça colore en rouge l'email 
+            displayNextTab(deltaN);
         });
     }
     // 2. Connu => bon mdp ? Pas connu => continuer
     else if (deltaN == 1 && currentTab == 1 && validateForm()) {
-        if (key == "LogIn") { // Requete avec le mot de passe : bons identifiants ?
+        if (key == "SignUp") {
+            // on passe à la suite
+            displayNextTab(deltaN);
+        } else if (key == "LogIn") { // Requete avec le mot de passe : bons identifiants ?
             var password = $("#password").val();
             $.post(server + "connecter.php" + (sessionStorage['session_id'] === undefined ? "" : "?gmba=" + sessionStorage['session_id']), { password: password }, function(messageJson) {
                 // gestion des erreurs
@@ -87,6 +84,44 @@ function nextPrev(deltaN) {
             // revenir au début
             nextPrev(-1);
         }
+    }
+    // on crée notre compte
+    else if (deltaN == 1 && currentTab == 2 && validateForm()) {
+        // on récupère les données
+        var nom = $("#nom").val();
+        var prenom = $("#prenom").val();
+        var fonction = $("#fonction").val();
+        var codestartup = $("#codestartup").val();
+        var password = $("#password2").val();
+        var password2 = $("#password3").val();
+        if (password != password2) {
+            $("#password3").addClass('invalid');
+            $("#texteModal").html("Les mots de passe sont différents.");
+            $('#myModal').modal('show');
+            return;
+        }
+        $.post(server + "creerprofil.php" + (sessionStorage['session_id'] === undefined ? "" : "?gmba=" + sessionStorage['session_id']), { nom: nom, prenom: prenom, fonction: fonction, codestartup: codestartup, password: password }, function(messageJson) {
+            // gestion des erreurs
+            if (messageJson.error) {
+                $("#texteModal").html("Erreur : "+messageJson.error);
+                $('#myModal').modal('show');   
+                // gestion de la réussite
+            } else if (messageJson.success) {
+                // on stocke les infos de l'utilisateur
+                sessionStorage['user'] = JSON.stringify({
+                    nom: nom,
+                    prenom: prenom,
+                    iduser: messageJson.iduser,
+                    email: $("#email").val(),
+                    idsu: messageJson.idsu,
+                    coutcir: 0,
+                    coutsub: 0
+                });
+                // on redirige vers la page employe
+                window.location.replace("employe.html");
+            }
+        });
+
     } else { // deltaN == -1
         displayNextTab(deltaN);
     }

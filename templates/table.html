@@ -5,18 +5,43 @@
             <th>Projet\Jour</th>
             <!-- {{#dates}} -->
             <th>
-                {{dateClean}}
+                <a class="cellMoreInfo" href="#precis">
+                    <div style="height:100%;width:100%" onclick="displayDayPrecise('{{iddate}}', null);">
+                        {{dateClean}}
+                    </div>
+                </a>
             </th>
             <!-- {{/dates}} -->
         </tr>
         <!-- Lignes -->
         <!-- {{#projets}} -->
         <tr id={{idprojet}}>
-        	<td class="w3-light-green">{{nom}}</td>
-        	<!-- {{#dates}} -->
-            <td class={{iddate}}>0</td>
+            <td class="w3-light-green">{{nom}}</td>
+            <!-- {{#dates}} -->
+            <td>
+                <a class="cellMoreInfo" href="#precis">
+                    <div class={{iddate}} style="height:100%;width:100%" onclick="displayDayPrecise('{{iddate}}', '{{idprojet}}');">
+                        0
+                    </div>
+                </a>
+            </td>
             <!-- {{/dates}} -->
         </tr>
-		<!-- {{/projets}} -->
+        <!-- {{/projets}} -->
+        <!-- Bottom : somme des heures -->
+        <tr class="w3-pale-green">
+            <!-- pale-green/pale-yellow/pale-blue/sand -->
+            <td class="w3-light-green">Total</td>
+            <!-- {{#dates}} -->
+            <td>
+                <a class="cellMoreInfo" href="#precis">
+                    <div id="somme{{iddate}}" style="height:100%;width:100%" onclick="displayDayPrecise('{{iddate}}', null);">
+                        0
+                    </div>
+                </a>
+            </td>
+            <!-- {{/dates}} -->
+        </tr>
+        {{^projets}}Pas encore de projets déclarés.{{/projets}}
     </table>
 </div>

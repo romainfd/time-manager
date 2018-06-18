@@ -1,4 +1,4 @@
-input, select {
+input, select, textarea {
     padding: 10px;
     width: 100%;
     font-size: 17px;
@@ -15,10 +15,9 @@ input, select {
 
 
 /* Mark input boxes that gets an error on validation: */
-input.invalid, select.invalid {
+input.invalid, select.invalid, textarea.invalid {
     background-color: #ffdddd;
 }
-
 
 /* ---------------- TOGGLE SWITCH ARRONDI ----------------------- */
 /* Le label du switch */
@@ -90,3 +89,4 @@ input:checked + .slider:before {
 .slider.round:before {
   border-radius: 50%;
 }
+

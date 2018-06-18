@@ -11,7 +11,7 @@
     <link rel="stylesheet" type="text/css" href="css/accueil.css">
     <link rel="icon" type="image/x-icon" href="favicon.ico" />
     <!--[if IE]><link rel="shortcut icon" type="image/x-icon" href="favicon.ico" /><![endif]-->
-    <title>Connexion</title>
+    <title>Création de compte</title>
 </head>
 
 <body>
@@ -32,6 +32,25 @@
         </div>
         <!-- Circles which indicates the steps of the form: -->
         <div id="circlesLogIn" class="circles">
+            <span class="step"></span>
+            <span class="step"></span>
+        </div>
+        <!-- PARTIE SIGN UP -->
+        <div class="tab tabSignUp">
+            <label for="prenom">Informations:</label>
+            <input name="prenom" id="prenom" type="text" maxlength="50" placeholder="Prénom..." oninput="this.className = ''">
+            <input name="nom" id="nom" type="text" maxlength="50" placeholder="Nom..." oninput="this.className = ''">
+            <input name="fonction" id="fonction" type="text" maxlength="100" placeholder="Fonction..." oninput="this.className = ''">
+        </div>
+        <div class="tab tabSignUp">
+            <label for="codestartup">Confidentialité:</label>
+            <input name="codestartup" id="codestartup" type="text" maxlength="255" placeholder="Code StartUp..." oninput="this.className = ''">
+            <input name="password2" id="password2" type="password" maxlength="255" placeholder="Mot de passe..." oninput="this.className = ''">
+            <input id="password3" type="password" maxlength="255" placeholder="Confirmation du mot de passe..." oninput="this.className = ''">
+        </div>
+        <!-- Circles which indicates the steps of the form: -->
+        <div id="circlesSignUp" class="circles">
+            <span class="step"></span>
             <span class="step"></span>
             <span class="step"></span>
         </div>
@@ -63,7 +82,7 @@
     <script type="text/javascript" src="js/jquery-3.2.1.min.js"></script>
     <script type="text/javascript" src="js/bootstrap.min.js"></script>
     <script type="text/javascript" src="js/serveur.js"></script>
-    <script type="text/javascript" src="js/accueil.js"></script>
+    <script type="text/javascript" src="js/comptes.js"></script>
 </body>
 
 </html>
